@@ -4,11 +4,13 @@ Simple software architectures project to design a taxi booking framework.
 
 # Table of Contents
 
-- [Team Members](#team-members)
-- [Description](#description)
-  - [Prioritised Feature List](#prioritised-feature-list)
-- [Framework Architecture](#framework-architecture)
-  - [Framework Services](#framework-services)
+* [Team Members](#team-members)
+* [Description](#description)
+  * [Prioritised Feature List](#prioritised-feature-list)
+  * [Framework Architecture](#framework-architecture)
+    * [Framework Services](#framework-services)
+  * [Component Diagram](#component-diagram)
+  * [Class Diagram](#class-diagram)
 
 # Team Members
 
@@ -60,30 +62,36 @@ The framework is designed using a service oriented architecture with each servic
 
 #### User Management Service
 
-    Handles user registration, authentication, and profile management for both passengers and drivers.
+> Handles user registration, authentication, and profile management for both passengers and drivers.
 
 #### Booking Service
 
-    Manages the entire booking process, including searching for available taxis, selecting pickup and drop-off locations, confirming bookings, and handling cancellations.
+> Manages the entire booking process, including searching for available taxis, selecting pickup and drop-off locations, confirming bookings, and handling cancellations.
 
 #### Driver Management Service
 
-    Manages driver registration, authentication, and profile management, as well as driver availability and assignment to bookings.
+> Manages driver registration, authentication, and profile management, as well as driver availability and assignment to bookings.
 
 #### Fleet Management Service
 
-    Handles registration and management of vehicles, tracking vehicle locations, and optimizing vehicle utilization based on demand.
-
+> Handles registration and management of vehicles, tracking vehicle locations, and optimizing vehicle utilization based on demand.
 
 #### Dispatching Service
 
-    Assigns available taxis to incoming booking requests based on factors like proximity, driver availability, and real-time traffic conditions.
+> Assigns available taxis to incoming booking requests based on factors like proximity, driver availability, and real-time traffic conditions.
 
 #### Payment Service
 
-    Manages payment processing for completed rides, including fare calculation, payment method integration, invoice generation, and handling refunds or disputes.
+> Manages payment processing for completed rides, including fare calculation, payment method integration, invoice generation, and handling refunds or disputes.
 
 #### Admin Service
 
-    Provides administrators with a centralized interface for managing system configurations, monitoring key metrics, handling user complaints, and performing administrative tasks.
+> Provides administrators with a centralized interface for managing system configurations, monitoring key metrics, handling user complaints, and performing administrative tasks.
 
+## Component Diagram
+
+TODO
+
+## Class Diagram
+
+TODO
