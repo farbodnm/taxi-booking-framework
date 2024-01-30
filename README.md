@@ -17,7 +17,7 @@ Simple software architectures project to design a taxi booking framework.
 - Farbod Nazari Montazer
 - Mahshad Salimi
 - Amin Hassan Zarei
-- Taha Amirkhani
+- Taha Khani Almoti
 
 # Description
 
