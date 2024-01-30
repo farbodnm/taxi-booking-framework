@@ -9,8 +9,7 @@ Simple software architectures project to design a taxi booking framework.
   * [Prioritised Feature List](#prioritised-feature-list)
   * [Framework Architecture](#framework-architecture)
     * [Framework Services](#framework-services)
-  * [Component Diagram](#component-diagram)
-  * [Class Diagram](#class-diagram)
+  * [Component, and Class Diagram](#component-and-class-diagram)
 
 # Team Members
 
@@ -88,10 +87,9 @@ The framework is designed using a service oriented architecture with each servic
 
 > Provides administrators with a centralized interface for managing system configurations, monitoring key metrics, handling user complaints, and performing administrative tasks.
 
-## Component Diagram
-
-TODO
-
-## Class Diagram
-
-TODO
+## Component, and Class Diagram
+To view the diagram please click the 
+<a href="https://drive.google.com/file/d/1gh2QHW3NECSqxgJto3pL6OYBeBucoGQe/view?usp=drive_link">
+Draw.io
+</a>
+link.
