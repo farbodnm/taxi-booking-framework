@@ -88,7 +88,7 @@ The framework is designed using a service oriented architecture with each servic
 > Provides administrators with a centralized interface for managing system configurations, monitoring key metrics, handling user complaints, and performing administrative tasks.
 
 ## Component, and Class Diagram
-To view the diagram please click the link below.
+To view the enforced architecture diagram please click the link below (The classes provided by the framework are colored blue, while the classes that are supposed to be made by the developer are coloured purple).
 
 <a href="https://drive.google.com/file/d/1gh2QHW3NECSqxgJto3pL6OYBeBucoGQe/view?usp=drive_link">
 Draw.io
