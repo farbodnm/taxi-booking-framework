@@ -1,4 +1,4 @@
-package com.taxi.user.dto;
+package com.taxi.user.framework.dto;
 
 import lombok.Data;
 import lombok.Getter;

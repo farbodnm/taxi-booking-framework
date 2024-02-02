@@ -1,5 +1,7 @@
 package com.taxi.user.dto;
 
-public class ExtendedUserSigninDTO extends BaseUserSigninDTO{
+import com.taxi.user.framework.dto.BaseUserSigninDTO;
+
+public class ExtendedUserSigninDTO extends BaseUserSigninDTO {
 
 }
