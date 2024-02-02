@@ -24,6 +24,7 @@
 
     <modules>
         <module>user</module>
+        <module>booking</module>
     </modules>
 
     <properties>
