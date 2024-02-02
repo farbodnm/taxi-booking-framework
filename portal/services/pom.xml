@@ -25,6 +25,7 @@
     <modules>
         <module>user</module>
         <module>booking</module>
+        <module>dispatch</module>
     </modules>
 
     <properties>
