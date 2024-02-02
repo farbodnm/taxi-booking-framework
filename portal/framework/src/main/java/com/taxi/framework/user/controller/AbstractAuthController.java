@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 public abstract class AbstractAuthController<T extends BaseUserSigninDTO> {
 
-    protected final AuthService<T> service;
+    protected final AuthService<T> authService;
 
     protected AbstractAuthController(AuthService<T> service) {
-        this.service = service;
+        this.authService = service;
     }
 
     @PostMapping("/signin")
     public ResponseEntity<T> signIn(@RequestBody T dto) {
-        return ResponseEntity.ok(service.signIn(dto));
+        return ResponseEntity.ok(authService.signIn(dto));
     }
 }
