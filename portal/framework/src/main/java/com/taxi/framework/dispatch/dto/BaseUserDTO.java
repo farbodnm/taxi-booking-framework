@@ -11,5 +11,7 @@ public class BaseUserDTO {
     private long userId;
     private float longitude;
     private float latitude;
+    private float destLongitude;
+    private float destLatitude;
     private String message;
 }

@@ -11,4 +11,6 @@ public class BaseBookingRequestDTO {
     private long userId;
     private float longitude;
     private float latitude;
+    private float destLongitude;
+    private float destLatitude;
 }
