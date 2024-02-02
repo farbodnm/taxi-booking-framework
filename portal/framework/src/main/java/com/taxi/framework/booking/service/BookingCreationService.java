@@ -4,7 +4,7 @@ import com.taxi.framework.booking.dto.BaseBookedRequestDTO;
 import com.taxi.framework.booking.dto.BaseBookingRequestDTO;
 
 public interface BookingCreationService<T extends BaseBookingRequestDTO, Y extends BaseBookedRequestDTO> {
-    T createBooking(T t);
-    String refresh();
-    Y booked(Y y);
+    String createBooking(T t);
+    BaseBookedRequestDTO refresh(long userId);
+    Y booked(Y y, long userId);
 }

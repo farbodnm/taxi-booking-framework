@@ -11,4 +11,5 @@ public class BaseBookedRequestDTO {
     private long driverId;
     private float driverLongitude;
     private float driverLatitude;
+    private String message;
 }

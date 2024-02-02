@@ -1,7 +1,12 @@
 package com.taxi.framework.dispatch.service;
 
+import com.taxi.framework.booking.dto.BaseBookedRequestDTO;
 import com.taxi.framework.dispatch.dto.BaseDriverDTO;
 import com.taxi.framework.dispatch.dto.BaseUserDTO;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -28,19 +33,28 @@ public class AbstractFindCarService implements FindCarService<BaseUserDTO, BaseD
     }
 
     @Override
-    public BaseDriverDTO reportFoundDriver(BaseDriverDTO baseBookedRequestDTO) {
-        return null;
-    }
-
-    @Override
-    public BaseUserDTO acceptUser(BaseDriverDTO driverDTO, long userId){
+    public BaseUserDTO acceptUser(BaseDriverDTO driverDTO, Long userId){
         long driverId = driverDTO.getDriverId();
 
         BaseUserDTO userDTO = usersMap.get(userId);
 
-        usersMap.remove(userId);
-        driversMap.remove(driverId);
+        String url = "http://localhost:10001/api/booking/booked/" + userId.toString();
+        RestTemplate restTemplate = new RestTemplate();
 
+        driverDTO.setMessage("Your driver is on the way!");
+
+        if (restTemplate.exchange(
+                url,
+                HttpMethod.POST,
+                new HttpEntity<>(driverDTO),
+                Void.class
+        ).getStatusCode() == HttpStatusCode.valueOf(200)) {
+            usersMap.remove(userId);
+            driversMap.remove(driverId);
+            userDTO.setMessage("Acceptance request sent successfully.");
+            return userDTO;
+        }
+        userDTO.setMessage("Acceptance request failed.");
         return userDTO;
     }
 
