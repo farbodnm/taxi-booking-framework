@@ -1,16 +1,16 @@
-package com.taxi.user.framework.dto;
+package com.taxi.framework.user.dto;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
-@Setter
-@NoArgsConstructor
-public class BaseUserSigninDTO {
+import java.util.Date;
 
+@Setter
+@Getter
+@NoArgsConstructor
+public class BaseUserSignupDTO {
     private String username;
     private String password;
-
+    private Date dateOfBirth;
 }

@@ -1,7 +1,7 @@
-package com.taxi.user.framework.controller;
+package com.taxi.framework.user.controller;
 
-import com.taxi.user.framework.dto.BaseUserSigninDTO;
-import com.taxi.user.framework.service.AuthService;
+import com.taxi.framework.user.dto.BaseUserSigninDTO;
+import com.taxi.framework.user.service.AuthService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

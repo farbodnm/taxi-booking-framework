@@ -10,10 +10,17 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <groupId>com.taxi</groupId>
     <artifactId>services</artifactId>
     <packaging>pom</packaging>
     <version>0.0.1-SNAPSHOT</version>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.taxi</groupId>
+            <artifactId>framework</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
     <modules>
         <module>user</module>

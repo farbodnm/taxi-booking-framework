@@ -23,5 +23,6 @@
 
     <modules>
         <module>services</module>
+        <module>framework</module>
     </modules>
 </project>
