@@ -15,7 +15,7 @@ public abstract class AbstractSignupController<T extends BaseUserSignupDTO> {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<T> signIn(@RequestBody T dto) {
+    public ResponseEntity<T> signUp(@RequestBody T dto) {
         return ResponseEntity.ok(signupService.signUp(dto));
     }
 }
