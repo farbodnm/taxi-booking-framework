@@ -8,24 +8,24 @@ import org.springframework.web.client.RestTemplate;
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class AbstractBookingCreationServiceImpl implements BookingCreationService<BaseBookingRequestDTO, BaseBookedRequestDTO> {
+public abstract class AbstractBookingCreationServiceImpl<B extends BaseBookingRequestDTO, R extends BaseBookedRequestDTO> implements BookingCreationService<B, R> {
 
-    private Map<Long, BaseBookedRequestDTO> assignedDriversMap = new HashMap<>();
+    private Map<Long, R> assignedDriversMap = new HashMap<>();
 
     @Override
-    public String createBooking(BaseBookingRequestDTO baseBookingRequestDTO) {
+    public String createBooking(B bookingRequestDTO) {
         String url = "http://localhost:10002/api/dispatch/find/driver";
         RestTemplate restTemplate = new RestTemplate();
         if (restTemplate.exchange(
                 url,
                 HttpMethod.POST,
-                new HttpEntity<>(baseBookingRequestDTO),
+                new HttpEntity<>(bookingRequestDTO),
                 Void.class
         ).getStatusCode() == HttpStatusCode.valueOf(200)) {
 
-            BaseBookedRequestDTO bookedRequest = new BaseBookedRequestDTO();
+            R bookedRequest = createBookedRequestDTO();
             bookedRequest.setMessage("Trying to find you a driver");
-            assignedDriversMap.put(baseBookingRequestDTO.getUserId(), bookedRequest);
+            assignedDriversMap.put(bookingRequestDTO.getUserId(), bookedRequest);
 
             return "Booking request successful.";
         }
@@ -33,15 +33,18 @@ public abstract class AbstractBookingCreationServiceImpl implements BookingCreat
     }
 
     @Override
-    public BaseBookedRequestDTO booked(BaseBookedRequestDTO baseBookedRequestDTO, long userId) {
+    public R booked(R bookedRequestDTO, long userId) {
 
-        assignedDriversMap.put(userId, baseBookedRequestDTO);
+        assignedDriversMap.put(userId, bookedRequestDTO);
 
-        return baseBookedRequestDTO;
+        return bookedRequestDTO;
     }
 
     @Override
-    public BaseBookedRequestDTO refresh(long userId){
+    public R refresh(long userId){
         return assignedDriversMap.get(userId);
     }
+
+    // Method to create a new instance of the booked request DTO
+    protected abstract R createBookedRequestDTO();
 }

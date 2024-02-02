@@ -1,6 +1,5 @@
 package com.taxi.framework.dispatch.service;
 
-import com.taxi.framework.booking.dto.BaseBookedRequestDTO;
 import com.taxi.framework.dispatch.dto.BaseDriverDTO;
 import com.taxi.framework.dispatch.dto.BaseUserDTO;
 import org.springframework.http.HttpEntity;
@@ -13,30 +12,30 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public class AbstractFindCarService implements FindCarService<BaseUserDTO, BaseDriverDTO> {
+public abstract class AbstractFindCarService<U extends BaseUserDTO, D extends BaseDriverDTO> implements FindCarService<U, D> {
 
-    private Map<Long, BaseUserDTO> usersMap = new HashMap<>();
-    private Map<Long, BaseDriverDTO> driversMap = new HashMap<>();
+    private Map<Long, U> usersMap = new HashMap<>();
+    private Map<Long, D> driversMap = new HashMap<>();
 
     @Override
-    public Set<BaseDriverDTO> findDriver(BaseUserDTO userDTO) {
+    public Set<D> findDriver(U userDTO) {
         long userId = userDTO.getUserId();
         usersMap.put(userId, userDTO);
         return findNearbyDrivers(userDTO);
     }
 
     @Override
-    public Set<BaseUserDTO> findUser(BaseDriverDTO driverDTO) {
+    public Set<U> findUser(D driverDTO) {
         long driverId = driverDTO.getDriverId();
         driversMap.put(driverId, driverDTO);
         return findNearbyUsers(driverDTO);
     }
 
     @Override
-    public BaseUserDTO acceptUser(BaseDriverDTO driverDTO, Long userId){
+    public U acceptUser(D driverDTO, Long userId){
         long driverId = driverDTO.getDriverId();
 
-        BaseUserDTO userDTO = usersMap.get(userId);
+        U userDTO = usersMap.get(userId);
 
         String url = "http://localhost:10001/api/booking/booked/" + userId.toString();
         RestTemplate restTemplate = new RestTemplate();
@@ -58,14 +57,14 @@ public class AbstractFindCarService implements FindCarService<BaseUserDTO, BaseD
         return userDTO;
     }
 
-    private Set<BaseUserDTO> findNearbyUsers(BaseDriverDTO driverDTO) {
+    private Set<U> findNearbyUsers(D driverDTO) {
 
         float driverLatitude = driverDTO.getDriverLatitude();
         float driverLongitude = driverDTO.getDriverLongitude();
 
-        Set<BaseUserDTO> nearbyUsers = new HashSet<>();
+        Set<U> nearbyUsers = new HashSet<>();
 
-        for (BaseUserDTO user : usersMap.values()) {
+        for (U user : usersMap.values()) {
             if (calculateDistance(
                     driverLatitude,
                     driverLongitude,
@@ -79,14 +78,14 @@ public class AbstractFindCarService implements FindCarService<BaseUserDTO, BaseD
         return nearbyUsers;
     }
 
-    private Set<BaseDriverDTO> findNearbyDrivers(BaseUserDTO userDTO) {
+    private Set<D> findNearbyDrivers(U userDTO) {
 
         float userLatitude = userDTO.getLatitude();
         float userLongitude = userDTO.getLongitude();
 
-        Set<BaseDriverDTO> nearbyDrivers = new HashSet<>();
+        Set<D> nearbyDrivers = new HashSet<>();
 
-        for (BaseDriverDTO driver : driversMap.values()) {
+        for (D driver : driversMap.values()) {
             if (calculateDistance(
                     userLatitude,
                     userLongitude,
