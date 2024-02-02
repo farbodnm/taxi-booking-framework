@@ -45,6 +45,5 @@ public abstract class AbstractBookingCreationServiceImpl<B extends BaseBookingRe
         return assignedDriversMap.get(userId);
     }
 
-    // Method to create a new instance of the booked request DTO
     protected abstract R createBookedRequestDTO();
 }
