@@ -57,7 +57,7 @@ public abstract class AbstractBookingCreationServiceImpl<B extends BaseBookingRe
 
         R bookedRequestDTO = assignedDriversMap.get(userId);
 
-        if (bookedRequestDTO.getMessage() == BaseBookedRequestDTO.MessageEnum.REACHED_DESTINATION) {
+        if (bookedRequestDTO != null && bookedRequestDTO.getMessage() == BaseBookedRequestDTO.MessageEnum.REACHED_DESTINATION) {
             assignedDriversMap.remove(userId);
         }
 

@@ -2,9 +2,8 @@ package com.taxi.framework.dispatch.service;
 
 import com.taxi.framework.dispatch.dto.BaseDriverDTO;
 import com.taxi.framework.dispatch.dto.BaseUserDTO;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatusCode;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
@@ -20,22 +19,70 @@ public abstract class AbstractFindCarService<U extends BaseUserDTO, D extends Ba
     @Override
     public Set<D> findDriver(U userDTO) {
         long userId = userDTO.getUserId();
+        Map<Long, D> tempDriversMap = driversMap;
+        for (D driver : tempDriversMap.values()) {
+            String url = "http://localhost:10003/api/fleet/location/" + driver.getDriverId();
+            RestTemplate restTemplate = new RestTemplate();
+
+            ResponseEntity<D> responseEntity = restTemplate.exchange(
+                    url,
+                    HttpMethod.POST,
+                    null,
+                    new ParameterizedTypeReference<D>() {
+                    }
+            );
+
+            if (responseEntity.getStatusCode() == HttpStatus.OK) {
+                D theDriver = responseEntity.getBody();
+                assert theDriver != null;
+                driversMap.put(theDriver.getDriverId(), theDriver);
+            }
+        }
         usersMap.put(userId, userDTO);
-        return findNearbyDrivers(userDTO);
+        Set<D> nearbyDrivers = findNearbyDrivers(userDTO);
+        for (D nearbyDriver: nearbyDrivers) {
+            String url = "http://localhost:10003/api/fleet/update/" + nearbyDriver.getDriverId();
+            RestTemplate restTemplate = new RestTemplate();
+
+            if (restTemplate.exchange(
+                    url,
+                    HttpMethod.POST,
+                    new HttpEntity<>(userDTO),
+                    Void.class
+            ).getStatusCode() == HttpStatusCode.valueOf(200));
+        }
+        return nearbyDrivers;
     }
 
     @Override
     public Set<U> findUser(D driverDTO) {
         long driverId = driverDTO.getDriverId();
+        Map<Long, D> tempDriversMap = driversMap;
+        for (D driver : tempDriversMap.values()) {
+            String url = "http://localhost:10003/api/fleet/location/" + driver.getDriverId();
+            RestTemplate restTemplate = new RestTemplate();
+
+            ResponseEntity<D> responseEntity = restTemplate.exchange(
+                    url,
+                    HttpMethod.POST,
+                    null,
+                    new ParameterizedTypeReference<D>() {
+                    }
+            );
+
+            if (responseEntity.getStatusCode() == HttpStatus.OK) {
+                D theDriver = responseEntity.getBody();
+                assert theDriver != null;
+                driversMap.put(theDriver.getDriverId(), theDriver);
+            }
+        }
         driversMap.put(driverId, driverDTO);
         return findNearbyUsers(driverDTO);
     }
 
     @Override
-    public String acceptUser(D driverDTO, Long userId){
+    public U acceptUser(D driverDTO, Long userId){
         long driverId = driverDTO.getDriverId();
-
-        U userDTO = usersMap.get(userId);
 
         String url = "http://localhost:10001/api/booking/booked/" + userId.toString();
         RestTemplate restTemplate = new RestTemplate();
@@ -46,11 +93,12 @@ public abstract class AbstractFindCarService<U extends BaseUserDTO, D extends Ba
                 new HttpEntity<>(driverDTO),
                 Void.class
         ).getStatusCode() == HttpStatusCode.valueOf(200)) {
+            U userDTO = usersMap.get(userId);
             usersMap.remove(userId);
             driversMap.remove(driverId);
-            return "Acceptance request sent successfully.";
+            return userDTO;
         }
-        return "Acceptance request failed.";
+        return null;
     }
 
     private Set<U> findNearbyUsers(D driverDTO) {

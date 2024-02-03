@@ -1,4 +1,4 @@
-package com.taxi.framework.dispatch.dto;
+package com.taxi.framework.fleet.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class BaseUserDTO {
+public class BaseFleetUserDTO {
     private long userId;
     private float longitude;
     private float latitude;

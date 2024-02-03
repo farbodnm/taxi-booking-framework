@@ -30,7 +30,7 @@ public abstract class AbstractFindCarController<T extends BaseUserDTO, Y extends
     }
 
     @PostMapping("/accept/{userId}")
-    public ResponseEntity<String> acceptUser(@PathVariable long userId, @RequestBody Y dto) {
+    public ResponseEntity<T> acceptUser(@PathVariable long userId, @RequestBody Y dto) {
         return ResponseEntity.ok(findCarService.acceptUser(dto, userId));
     }
 }
