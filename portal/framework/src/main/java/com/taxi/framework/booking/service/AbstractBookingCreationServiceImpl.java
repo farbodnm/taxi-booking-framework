@@ -24,7 +24,7 @@ public abstract class AbstractBookingCreationServiceImpl<B extends BaseBookingRe
         ).getStatusCode() == HttpStatusCode.valueOf(200)) {
 
             R bookedRequest = createBookedRequestDTO();
-            bookedRequest.setMessage("Trying to find you a driver");
+            bookedRequest.setMessage(R.MessageEnum.LOOKING_FOR_A_DRIVER);
             assignedDriversMap.put(bookingRequestDTO.getUserId(), bookedRequest);
 
             return "Booking request successful.";
@@ -35,14 +35,33 @@ public abstract class AbstractBookingCreationServiceImpl<B extends BaseBookingRe
     @Override
     public R booked(R bookedRequestDTO, long userId) {
 
+        bookedRequestDTO.setMessage(BaseBookedRequestDTO.MessageEnum.DRIVER_ON_THE_WAY);
         assignedDriversMap.put(userId, bookedRequestDTO);
 
         return bookedRequestDTO;
     }
 
     @Override
+    public String bookingNextState(long userId) {
+
+        R bookedRequestDTO = assignedDriversMap.get(userId);
+        bookedRequestDTO.setMessage(bookedRequestDTO.getMessage().getNextState());
+
+        assignedDriversMap.put(userId, bookedRequestDTO);
+
+        return bookedRequestDTO.getMessage().getMessage();
+    }
+
+    @Override
     public R refresh(long userId){
-        return assignedDriversMap.get(userId);
+
+        R bookedRequestDTO = assignedDriversMap.get(userId);
+
+        if (bookedRequestDTO.getMessage() == BaseBookedRequestDTO.MessageEnum.REACHED_DESTINATION) {
+            assignedDriversMap.remove(userId);
+        }
+
+        return bookedRequestDTO;
     }
 
     protected abstract R createBookedRequestDTO();

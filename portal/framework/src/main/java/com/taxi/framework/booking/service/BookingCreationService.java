@@ -7,4 +7,5 @@ public interface BookingCreationService<T extends BaseBookingRequestDTO, Y exten
     String createBooking(T t);
     BaseBookedRequestDTO refresh(long userId);
     Y booked(Y y, long userId);
+    String bookingNextState(long userId);
 }

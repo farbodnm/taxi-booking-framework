@@ -32,15 +32,13 @@ public abstract class AbstractFindCarService<U extends BaseUserDTO, D extends Ba
     }
 
     @Override
-    public U acceptUser(D driverDTO, Long userId){
+    public String acceptUser(D driverDTO, Long userId){
         long driverId = driverDTO.getDriverId();
 
         U userDTO = usersMap.get(userId);
 
         String url = "http://localhost:10001/api/booking/booked/" + userId.toString();
         RestTemplate restTemplate = new RestTemplate();
-
-        driverDTO.setMessage("Your driver is on the way!");
 
         if (restTemplate.exchange(
                 url,
@@ -50,11 +48,9 @@ public abstract class AbstractFindCarService<U extends BaseUserDTO, D extends Ba
         ).getStatusCode() == HttpStatusCode.valueOf(200)) {
             usersMap.remove(userId);
             driversMap.remove(driverId);
-            userDTO.setMessage("Acceptance request sent successfully.");
-            return userDTO;
+            return "Acceptance request sent successfully.";
         }
-        userDTO.setMessage("Acceptance request failed.");
-        return userDTO;
+        return "Acceptance request failed.";
     }
 
     private Set<U> findNearbyUsers(D driverDTO) {

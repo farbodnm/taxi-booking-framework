@@ -8,5 +8,5 @@ import java.util.Set;
 public interface FindCarService<T extends BaseUserDTO, Y extends BaseDriverDTO>{
     Set<Y> findDriver(T t);
     Set<T> findUser(Y y);
-    T acceptUser(Y y, Long userId);
+    String acceptUser(Y y, Long userId);
 }
