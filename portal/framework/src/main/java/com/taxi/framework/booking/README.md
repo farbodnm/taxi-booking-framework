@@ -4,18 +4,36 @@ This service is supposed to Handle bookings made by users, manage assignments, s
 
 # Table of Contents
 
-* [Provided Classes](#classes-provided-in-the-framework)
-* [Controller Endpoints](#controller-endpoints)
+* [Provided Classes](#classes-provided-by-the-framework)
+    * [Service Methods](#service-methods)
+    * [Controller Endpoints](#controller-endpoints)
+* [Constructors](#constructors)
+    * [Controllers](#controllers)
+    * [Services](#services)
 
 # Classes provided by the framework
 
 The provided baseline DTOs are supposed to be expanded upon. As such the provided logic and controllers are written using generics.
 
-<p align="center">
-  <img width="1000" src="../../../../../../../../../images/Booking-Service.png" alt="Project Architecture">
-</p>
+## Service methods
 
-# Controller endpoints
+The logic provided by the framework for the booking service.
+
+<center> 
+
+|         Method         |                              Logic                               |
+|:----------------------:|:----------------------------------------------------------------:|
+|     createBooking      |           Logic for creating a booking from the user.            |
+|         booked         |          Logic for when the user is booked by a driver.          |
+|        refresh         |        Logic for user to refresh and see if he is booked.        |
+|    bookingNextState    |    Logic for driver to progress the travel state to the next     |
+| createBookedRequestDTO | Method to be overwritten by user to return the new extended DTO. |
+
+</center>
+
+## Controller endpoints
+
+The exposed controllers provided by the framework for the booking service.
 
 <center>
 
@@ -28,4 +46,35 @@ The provided baseline DTOs are supposed to be expanded upon. As such the provide
 
 </center>
 
+<p align="center">
+  <img width="1000" src="../../../../../../../../../images/Booking-Service.png" alt="Project Architecture">
+  Classes provided by the framework for booking service.
+</p>
 
+# Constructors
+
+The constructors required to be called when **extending** from the framework are as follows:
+
+## Controllers
+
+The constructors for framework controllers.
+
+<center>
+
+|        Controller         |                        Constructor                         |                                                     Input(s)                                                     |
+|:-------------------------:|:----------------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------:|
+| AbstractBookingController | super(BookingCreationService<T, Y> bookingCreationService) | A booking creation service that implements BookingCreationService or extends AbstractBookingCreationServiceImpl. |
+
+</center>
+
+## Services
+
+The constructors for framework services.
+
+<center>
+
+|              Services              |          Constructor           |                            Input(s)                             |
+|:----------------------------------:|:------------------------------:|:---------------------------------------------------------------:|
+| AbstractBookingCreationServiceImpl | super(String dispatchEndpoint) | A string that points to where the dispatch endpoint is located. |
+
+</center>
