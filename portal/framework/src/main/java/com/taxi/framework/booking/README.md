@@ -19,7 +19,7 @@ The provided baseline DTOs are supposed to be expanded upon. As such the provide
 
 The logic provided by the framework for the booking service.
 
-<center> 
+<div style="text-align: center;"> 
 
 |         Method         |                              Logic                               |
 |:----------------------:|:----------------------------------------------------------------:|
@@ -29,13 +29,13 @@ The logic provided by the framework for the booking service.
 |    bookingNextState    |    Logic for driver to progress the travel state to the next     |
 | createBookedRequestDTO | Method to be overwritten by user to return the new extended DTO. |
 
-</center>
+</div>
 
 ## Controller endpoints
 
 The exposed controllers provided by the framework for the booking service.
 
-<center>
+<div style="text-align: center;">
 
 | HTTP Verb |    Exposed Endpoint    |                                      Job                                       |
 |:---------:|:----------------------:|:------------------------------------------------------------------------------:|
@@ -44,7 +44,7 @@ The exposed controllers provided by the framework for the booking service.
 |    GET    |   /refresh/{userID}    | Returns the current state of the driver assignment and their location to user. |
 |   PATCH   |  /nextstate/{userID}   |                Goes to the next state of user's travel states.                 |
 
-</center>
+</div>
 
 <p align="center">
   <img width="1000" src="../../../../../../../../../images/Booking-Service.png" alt="Project Architecture">
@@ -59,22 +59,22 @@ The constructors required to be called when **extending** from the framework are
 
 The constructors for framework controllers.
 
-<center>
+<div style="text-align: center;">
 
 |        Controller         |                        Constructor                         |                                                     Input(s)                                                     |
 |:-------------------------:|:----------------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------:|
 | AbstractBookingController | super(BookingCreationService<T, Y> bookingCreationService) | A booking creation service that implements BookingCreationService or extends AbstractBookingCreationServiceImpl. |
 
-</center>
+</div>
 
 ## Services
 
 The constructors for framework services.
 
-<center>
+<div style="text-align: center;">
 
 |              Services              |          Constructor           |                            Input(s)                             |
 |:----------------------------------:|:------------------------------:|:---------------------------------------------------------------:|
 | AbstractBookingCreationServiceImpl | super(String dispatchEndpoint) | A string that points to where the dispatch endpoint is located. |
 
-</center>
+</div>
