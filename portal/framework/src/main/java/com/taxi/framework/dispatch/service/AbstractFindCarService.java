@@ -1,5 +1,6 @@
 package com.taxi.framework.dispatch.service;
 
+import com.taxi.framework.dispatch.dao.BaseAcceptedTravel;
 import com.taxi.framework.dispatch.dto.BaseDriverDTO;
 import com.taxi.framework.dispatch.dto.BaseUserDTO;
 import org.springframework.core.ParameterizedTypeReference;
@@ -105,6 +106,14 @@ public abstract class AbstractFindCarService<U extends BaseUserDTO, D extends Ba
             U userDTO = usersMap.get(userId);
             usersMap.remove(userId);
             driversMap.remove(driverId);
+
+            BaseAcceptedTravel baseAcceptedTravel = new BaseAcceptedTravel();
+            baseAcceptedTravel.setUser(userDTO);
+            baseAcceptedTravel.setDriver(driverDTO);
+
+            repository.save(baseAcceptedTravel);
+
+
             return userDTO;
         }
         return null;
