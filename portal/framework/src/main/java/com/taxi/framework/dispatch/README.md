@@ -1,4 +1,4 @@
-# Framework's Booking service
+# Framework's Dispatch service
 
 This service handles finding users and the drivers close to them, updates itself by getting each drivers updated location from the fleet service. This service also manages assigning a driver to a user.
 
