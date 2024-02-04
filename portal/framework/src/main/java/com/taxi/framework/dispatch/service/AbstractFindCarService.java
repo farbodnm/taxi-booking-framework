@@ -2,6 +2,7 @@ package com.taxi.framework.dispatch.service;
 
 import com.taxi.framework.dispatch.dto.BaseDriverDTO;
 import com.taxi.framework.dispatch.dto.BaseUserDTO;
+import com.taxi.framework.utils.Utilities;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
@@ -10,6 +11,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+
 
 public abstract class AbstractFindCarService<U extends BaseUserDTO, D extends BaseDriverDTO> implements FindCarService<U, D> {
 
@@ -109,7 +111,7 @@ public abstract class AbstractFindCarService<U extends BaseUserDTO, D extends Ba
         Set<U> nearbyUsers = new HashSet<>();
 
         for (U user : usersMap.values()) {
-            if (calculateDistance(
+            if (Utilities.calculateDistance(
                     driverLatitude,
                     driverLongitude,
                     user.getLatitude(),
@@ -130,7 +132,7 @@ public abstract class AbstractFindCarService<U extends BaseUserDTO, D extends Ba
         Set<D> nearbyDrivers = new HashSet<>();
 
         for (D driver : driversMap.values()) {
-            if (calculateDistance(
+            if (Utilities.calculateDistance(
                     userLatitude,
                     userLongitude,
                     driver.getDriverLatitude(),
@@ -143,16 +145,5 @@ public abstract class AbstractFindCarService<U extends BaseUserDTO, D extends Ba
         return nearbyDrivers;
     }
 
-    private double calculateDistance(double lat1, double lon1, double lat2, double lon2) {
-        final int R = 6371; // Radius of the earth
 
-        double latDistance = Math.toRadians(lat2 - lat1);
-        double lonDistance = Math.toRadians(lon2 - lon1);
-        double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
-                + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2))
-                * Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
-        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-        return R * c;
-    }
 }
