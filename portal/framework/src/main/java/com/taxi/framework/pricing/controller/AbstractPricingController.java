@@ -3,6 +3,7 @@ package com.taxi.framework.pricing.controller;
 import com.taxi.framework.pricing.dto.BasePricingDTO;
 import com.taxi.framework.pricing.dto.BaseResponsePricingDTO;
 import com.taxi.framework.pricing.service.AbstractPricingServiceImpl;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,7 +20,7 @@ public abstract class AbstractPricingController<T extends BasePricingDTO, Y exte
         this.pricingService = pricingService;
     }
 
-    @PostMapping("/calculate")
+    @PostMapping(value = "/calculate", consumes = MediaType.APPLICATION_ATOM_XML_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Y> calculatePricing(@RequestBody T dto) {
         return ResponseEntity.ok(pricingService.getResponse(dto));
     }
