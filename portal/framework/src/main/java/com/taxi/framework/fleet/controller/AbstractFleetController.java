@@ -4,6 +4,7 @@ import com.taxi.framework.fleet.dto.BaseFleetDriverDTO;
 import com.taxi.framework.fleet.dto.BaseFleetUserDTO;
 import com.taxi.framework.fleet.service.FleetService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,7 +34,7 @@ public abstract class AbstractFleetController<T extends BaseFleetUserDTO, Y exte
         return ResponseEntity.ok(fleetService.getDriverLoc(driverId));
     }
 
-    @PostMapping("/refresh/{driverId}")
+    @GetMapping("/refresh/{driverId}")
     public ResponseEntity<Set<T>> refresh(@PathVariable long driverId) {
         return ResponseEntity.ok(fleetService.refresh(driverId));
     }
