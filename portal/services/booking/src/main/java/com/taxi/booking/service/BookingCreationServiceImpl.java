@@ -10,6 +10,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class BookingCreationServiceImpl extends AbstractBookingCreationServiceImpl<BaseBookingRequestDTO, BaseBookedRequestDTO> {
 
+    BookingCreationServiceImpl() {
+        super(
+                "http://localhost:10002/api"
+        );
+    }
+
     @Override
     protected BaseBookedRequestDTO createBookedRequestDTO() {
         return new BaseBookedRequestDTO();
