@@ -14,8 +14,5 @@ public interface Utilities {
         return R * c;
     }
 
-    double offPrice(String code);
-    double checkRainyCost();
-    double checkSnowyCost();
 
 }
