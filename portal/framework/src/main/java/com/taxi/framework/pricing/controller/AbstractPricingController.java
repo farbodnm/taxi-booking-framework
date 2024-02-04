@@ -19,8 +19,8 @@ public abstract class AbstractPricingController<T extends BasePricingDTO, Y exte
         this.pricingService = pricingService;
     }
 
-    @PostMapping("/find/driver")
-    public ResponseEntity<Y> findDriver(@RequestBody T dto) {
+    @PostMapping("/calculate")
+    public ResponseEntity<Y> calculatePricing(@RequestBody T dto) {
         return ResponseEntity.ok(pricingService.getResponse(dto));
     }
 }
