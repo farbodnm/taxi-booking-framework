@@ -29,17 +29,17 @@ A defined ranked list of features required for a basic taxi reservation system w
 <center>
 
 | Priority |                 Feature                 |                                                                                                            Description                                                                                                             |
-| :------: | :-------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-|    1     |  User Registration and Authentication   |                                                                   User registration (passengers and drivers) <br> Login authentication (passengers and drivers)                                                                    |
-|    2     |           Profile Management            |                                                 User profile creation and editing (passengers and drivers) <br> Driver document verification (e.g., license, vehicle registration)                                                 |
-|    3     |           Booking Management            |                          Taxi availability search <br> Taxi selection based on criteria (e.g., location, type) <br> Pickup and drop-off location selection <br> Confirmation and cancellation of bookings                          |
-|    4     |            Taxi Dispatching             |                                                         Assigning nearest available taxi to passenger <br> Real-time tracking of taxi location <br> Dispatching algorithm                                                          |
+|:--------:| :-------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|    1     |           Booking Management            |                          Taxi availability search <br> Taxi selection based on criteria (e.g., location, type) <br> Pickup and drop-off location selection <br> Confirmation and cancellation of bookings                          |
+|    2     |            Taxi Dispatching             |                                                         Assigning nearest available taxi to passenger <br> Real-time tracking of taxi location <br> Dispatching algorithm                                                          |
+|    3     |            Fleet Management             |                Vehicle registration and management <br> Real-time tracking of vehicle locations <br> Vehicle availability status management <br> Vehicle maintenance scheduling <br> Optimizing vehicle utilization                |
+|    4     |  User Registration and Authentication   |                                                                   User registration (passengers and drivers) <br> Login authentication (passengers and drivers)                                                                    |
 |    5     |            Driver Management            | Driver registration and onboarding <br> Availability status management <br> Booking assignment to drivers <br> Real-time location tracking of driversReal-time location tracking of drivers <br> Navigation assistance for drivers |
-|    6     |            Fleet Management             |                Vehicle registration and management <br> Real-time tracking of vehicle locations <br> Vehicle availability status management <br> Vehicle maintenance scheduling <br> Optimizing vehicle utilization                |
-|    7     |       Feedback and Rating System        |                                                                  Passenger rating of drivers <br> Driver rating of passengers <br> Feedback submission for rides                                                                   |
-|    8     |             Admin Dashboard             |                                  System configuration management <br> Handling user complaints/disputes <br> Managing driver accounts <br> Generating reports and analytics <br> Feedback review                                   |
-|    9     |           Payment Processing            |                        Multiple payment method support (debit cards, cash) <br> Fare calculation based on distance, time, and additional charges <br> Invoice generation <br> Refunds and dispute handling                         |
-|    10    |         Notification Management         |              Booking confirmation notifications <br> Driver assignment notifications <br> Estimated arrival time notifications <br> Ride completion notifications <br> Payment confirmation notifications to drivers               |
+|    6     |           Payment Processing            |                        Multiple payment method support (debit cards, cash) <br> Fare calculation based on distance, time, and additional charges <br> Invoice generation <br> Refunds and dispute handling                         |
+|    7     |         Notification Management         |              Booking confirmation notifications <br> Driver assignment notifications <br> Estimated arrival time notifications <br> Ride completion notifications <br> Payment confirmation notifications to drivers               |
+|    8     |           Profile Management            |                                                 User profile creation and editing (passengers and drivers) <br> Driver document verification (e.g., license, vehicle registration)                                                 |
+|    9     |       Feedback and Rating System        |                                                                  Passenger rating of drivers <br> Driver rating of passengers <br> Feedback submission for rides                                                                   |
+|    10    |             Admin Dashboard             |                                  System configuration management <br> Handling user complaints/disputes <br> Managing driver accounts <br> Generating reports and analytics <br> Feedback review                                   |
 |    11    |         Analytics and Reporting         |                                      System performance analytics <br> User behavior analytics <br> Booking trend analysis <br> Driver productivity analysis <br> Revenue generation reports                                       |
 |    12    |        Promotions and Discounts         |                                                  Generating and applying promotion codes <br> Offering discounts for specific users or rides <br> Managing promotional campaigns                                                   |
 |    13    | Localization and Multi-language Support |                                                                    Supporting multiple languages for users <br> Localization of content based on user location                                                                     |
@@ -59,33 +59,17 @@ The framework is designed using a service oriented architecture with each servic
 
 ### Framework Services:
 
-#### User Management Service
+#### [Booking Service](portal/framework/src/main/java/com/taxi/framework/booking/README.md)
 
-> Handles user registration, authentication, and profile management for both passengers and drivers.
-
-#### Booking Service
-
-> Manages the entire booking process, including searching for available taxis, selecting pickup and drop-off locations, confirming bookings, and handling cancellations.
-
-#### Driver Management Service
-
-> Manages driver registration, authentication, and profile management, as well as driver availability and assignment to bookings.
-
-#### Fleet Management Service
-
-> Handles registration and management of vehicles, tracking vehicle locations, and optimizing vehicle utilization based on demand.
+> Handles bookings made by users, manages assignments, states of the user, and assigned driver's location.
 
 #### Dispatching Service
 
-> Assigns available taxis to incoming booking requests based on factors like proximity, driver availability, and real-time traffic conditions.
+> Handles finding users based on proximity to the driver, using the locations from fleet management.
 
-#### Payment Service
+#### Fleet Management Service
 
-> Manages payment processing for completed rides, including fare calculation, payment method integration, invoice generation, and handling refunds or disputes.
-
-#### Admin Service
-
-> Provides administrators with a centralized interface for managing system configurations, monitoring key metrics, handling user complaints, and performing administrative tasks.
+> Handles drivers registered and looking for users, keeps an updated location of each driver.
 
 ## Component, and Class Diagram
 To view the enforced architecture diagram please click the link below (The classes provided by the framework are colored blue, while the classes that are supposed to be made by the developer are coloured purple).
