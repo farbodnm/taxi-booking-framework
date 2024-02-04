@@ -11,9 +11,9 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class BasePricingDTO extends BaseFleetUserDTO {
-    float pricePerMeter;
-    float heavy;
-    boolean isRainy;
-    boolean isSnowy;
-    String offCode;
+    private float pricePerMeter;
+    private float heavy;
+    private boolean isRainy;
+    private boolean isSnowy;
+    private String offCode;
 }
