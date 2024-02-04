@@ -26,6 +26,7 @@
         <module>user</module>
         <module>booking</module>
         <module>dispatch</module>
+        <module>fleet</module>
     </modules>
 
     <properties>
