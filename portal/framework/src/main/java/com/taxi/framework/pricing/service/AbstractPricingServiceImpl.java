@@ -10,8 +10,6 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public abstract class AbstractPricingServiceImpl<T extends BasePricingDTO, Y extends BaseResponsePricingDTO>  implements PricingService<T, Y>, Utilities {
 
-    public abstract Y getResponse(T dto);
-
     @Override
     public double calculateTravelCost(T basePricingDTO) {
         double cost = 0.0;
