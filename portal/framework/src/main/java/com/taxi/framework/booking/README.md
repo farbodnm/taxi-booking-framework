@@ -15,6 +15,11 @@ This service is supposed to Handle bookings made by users, manage assignments, s
 
 The provided baseline DTOs are supposed to be expanded upon. As such the provided logic and controllers are written using generics.
 
+<p align="center">
+  <img width="1000" src="../../../../../../../../../images/Booking-Service.png" alt="Project Architecture">
+  <br/>Classes provided by the framework for booking service.
+</p>
+
 ## Service methods
 
 The logic provided by the framework for the booking service.
@@ -45,11 +50,6 @@ The exposed endpoints provided by the framework for the booking service.
 |   PATCH   |  /nextstate/{userID}   |                Goes to the next state of user's travel states.                 |
 
 </div>
-
-<p align="center">
-  <img width="1000" src="../../../../../../../../../images/Booking-Service.png" alt="Project Architecture">
-  <br/>Classes provided by the framework for booking service.
-</p>
 
 # Constructors
 
