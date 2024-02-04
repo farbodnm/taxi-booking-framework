@@ -12,9 +12,15 @@ public abstract class AbstractBookingCreationServiceImpl<B extends BaseBookingRe
 
     private Map<Long, R> assignedDriversMap = new HashMap<>();
 
+    private final String dispatchEndpoint;
+
+    protected AbstractBookingCreationServiceImpl(String dispatchEndpoint) {
+        this.dispatchEndpoint = dispatchEndpoint;
+    }
+
     @Override
     public String createBooking(B bookingRequestDTO) {
-        String url = "http://localhost:10002/api/dispatch/find/driver";
+        String url = dispatchEndpoint + "/dispatch/find/driver";
         RestTemplate restTemplate = new RestTemplate();
         if (restTemplate.exchange(
                 url,

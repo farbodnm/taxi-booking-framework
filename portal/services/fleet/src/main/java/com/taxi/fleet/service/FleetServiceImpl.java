@@ -7,4 +7,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class FleetServiceImpl extends AbstractFleetService<BaseFleetUserDTO, BaseFleetDriverDTO> {
+
+    protected FleetServiceImpl() {
+        super(
+                "http://localhost:10002/api"
+        );
+    }
 }

@@ -17,10 +17,16 @@ public class AbstractFleetService<T extends BaseFleetUserDTO, Y extends BaseFlee
 
     private Map<Long, Set<T>> nearbyUsers = new HashMap<>();
 
+    private final String dispatchEndpoint;
+
+    protected AbstractFleetService(String dispatchEndpoint) {
+        this.dispatchEndpoint = dispatchEndpoint;
+    }
+
     @Override
     public String registerDriver(Y driverDTO) {
 
-        String url = "http://localhost:10002/api/dispatch/find/users";
+        String url = dispatchEndpoint + "/dispatch/find/users";
         RestTemplate restTemplate = new RestTemplate();
 
         ResponseEntity<Set<T>> responseEntity = restTemplate.exchange(
@@ -63,7 +69,7 @@ public class AbstractFleetService<T extends BaseFleetUserDTO, Y extends BaseFlee
 
     @Override
     public T acceptUser(Long userId, Y driverDTO) {
-        String url = "http://localhost:10002/api/dispatch/accept/" + userId.toString();
+        String url = dispatchEndpoint + "/dispatch/accept/" + userId.toString();
         RestTemplate restTemplate = new RestTemplate();
 
         ResponseEntity<T> responseEntity = restTemplate.exchange(

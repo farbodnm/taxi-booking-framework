@@ -16,12 +16,21 @@ public abstract class AbstractFindCarService<U extends BaseUserDTO, D extends Ba
     private Map<Long, U> usersMap = new HashMap<>();
     private Map<Long, D> driversMap = new HashMap<>();
 
+    private final String fleetEndpoint;
+    private final String bookingEndpoint;
+
+    protected AbstractFindCarService(String fleetEndpoint, String bookingEndpoint) {
+        this.fleetEndpoint = fleetEndpoint;
+        this.bookingEndpoint = bookingEndpoint;
+    }
+
+
     @Override
     public Set<D> findDriver(U userDTO) {
         long userId = userDTO.getUserId();
         Map<Long, D> tempDriversMap = driversMap;
         for (D driver : tempDriversMap.values()) {
-            String url = "http://localhost:10003/api/fleet/location/" + driver.getDriverId();
+            String url = fleetEndpoint + "/fleet/location/" + driver.getDriverId();
             RestTemplate restTemplate = new RestTemplate();
 
             ResponseEntity<D> responseEntity = restTemplate.exchange(
@@ -41,7 +50,7 @@ public abstract class AbstractFindCarService<U extends BaseUserDTO, D extends Ba
         usersMap.put(userId, userDTO);
         Set<D> nearbyDrivers = findNearbyDrivers(userDTO);
         for (D nearbyDriver: nearbyDrivers) {
-            String url = "http://localhost:10003/api/fleet/update/" + nearbyDriver.getDriverId();
+            String url = fleetEndpoint + "/fleet/update/" + nearbyDriver.getDriverId();
             RestTemplate restTemplate = new RestTemplate();
 
             if (restTemplate.exchange(
@@ -59,7 +68,7 @@ public abstract class AbstractFindCarService<U extends BaseUserDTO, D extends Ba
         long driverId = driverDTO.getDriverId();
         Map<Long, D> tempDriversMap = driversMap;
         for (D driver : tempDriversMap.values()) {
-            String url = "http://localhost:10003/api/fleet/location/" + driver.getDriverId();
+            String url = fleetEndpoint + "/fleet/location/" + driver.getDriverId();
             RestTemplate restTemplate = new RestTemplate();
 
             ResponseEntity<D> responseEntity = restTemplate.exchange(
@@ -84,7 +93,7 @@ public abstract class AbstractFindCarService<U extends BaseUserDTO, D extends Ba
     public U acceptUser(D driverDTO, Long userId){
         long driverId = driverDTO.getDriverId();
 
-        String url = "http://localhost:10001/api/booking/booked/" + userId.toString();
+        String url = bookingEndpoint + "/booking/booked/" + userId.toString();
         RestTemplate restTemplate = new RestTemplate();
 
         if (restTemplate.exchange(
