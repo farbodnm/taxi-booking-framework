@@ -80,8 +80,5 @@ The framework is designed using a service oriented architecture with each servic
 > Pre-made endpoints, DTOs, and service interface for user management.
 
 ## Component, and Class Diagram
-To view the enforced architecture diagram please click the link below (The classes provided by the framework are colored blue, while the classes that are supposed to be made by the developer are coloured purple).
 
-<a href="https://drive.google.com/file/d/1gh2QHW3NECSqxgJto3pL6OYBeBucoGQe/view?usp=drive_link">
-Draw.io
-</a>
+To view the enforced architecture diagram please check the UML.drawio file inside the repository (The classes provided by the framework are colored blue, while the classes that are supposed to be made by the developer are coloured purple).
