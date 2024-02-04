@@ -24,7 +24,7 @@ public abstract class AbstractBookingController<T extends BaseBookingRequestDTO,
     }
 
     @GetMapping("/refresh/{userId}")
-    public ResponseEntity<BaseBookedRequestDTO> refresh(@PathVariable long userId) {
+    public ResponseEntity<Y> refresh(@PathVariable long userId) {
         return ResponseEntity.ok(bookingCreationService.refresh(userId));
     }
 
