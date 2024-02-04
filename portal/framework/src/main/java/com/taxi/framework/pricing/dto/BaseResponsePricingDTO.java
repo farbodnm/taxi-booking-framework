@@ -8,6 +8,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class BaseResponsePricingDTO {
-    long userId;
-    double travelPrice;
+    private long userId;
+    private double travelPrice;
 }
