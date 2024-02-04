@@ -13,7 +13,7 @@ import lombok.Setter;
 public class BasePricingDTO extends BaseFleetUserDTO {
     private float pricePerMeter;
     private float heavy;
-    private boolean isRainy;
-    private boolean isSnowy;
+    private Boolean isRainy;
+    private Boolean isSnowy;
     private String offCode;
 }

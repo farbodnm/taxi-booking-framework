@@ -21,9 +21,9 @@ public abstract class AbstractPricingServiceImpl<T extends BasePricingDTO, Y ext
         );
         cost = dist*basePricingDTO.getPricePerMeter();
         cost *= basePricingDTO.getHeavy();
-        if (basePricingDTO.isRainy())
+        if (basePricingDTO.getIsRainy())
             cost *= checkRainyCost();
-        else if (basePricingDTO.isSnowy())
+        else if (basePricingDTO.getIsSnowy())
             cost *= checkSnowyCost();
         if (!basePricingDTO.getOffCode().equals("")){
             cost = offPrice(basePricingDTO.getOffCode(), cost);
