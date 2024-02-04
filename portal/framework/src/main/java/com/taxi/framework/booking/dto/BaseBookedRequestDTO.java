@@ -1,5 +1,6 @@
 package com.taxi.framework.booking.dto;
 
+import com.taxi.framework.dispatch.dto.BaseDriverDTO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -7,10 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class BaseBookedRequestDTO {
-    private long driverId;
-    private float driverLongitude;
-    private float driverLatitude;
+public class BaseBookedRequestDTO extends BaseDriverDTO {
     private MessageEnum message;
 
     @Getter

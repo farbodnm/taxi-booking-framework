@@ -10,12 +10,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public abstract class AbstractPricingServiceImpl<T extends BasePricingDTO, Y extends BaseResponsePricingDTO>  implements PricingService<T, Y>, Utilities {
 
-    public Y getResponse(T dto){
-        Y baseResponsePricingDTO = createResponseDto();
-        baseResponsePricingDTO.setTravelPrice(calculateTravelCost(dto));
-        baseResponsePricingDTO.setUserId(dto.getUserId());
-        return baseResponsePricingDTO;
-    }
+    public abstract Y getResponse(T dto);
 
     @Override
     public double calculateTravelCost(T basePricingDTO) {
@@ -33,26 +28,8 @@ public abstract class AbstractPricingServiceImpl<T extends BasePricingDTO, Y ext
         else if (basePricingDTO.isSnowy())
             cost *= checkSnowyCost();
         if (!basePricingDTO.getOffCode().equals("")){
-            cost = offPrice(basePricingDTO.getOffCode());
+            cost = offPrice(basePricingDTO.getOffCode(), cost);
         }
         return cost;
     }
-
-    @Override
-    public double offPrice(String code) {
-        return 0;
-    }
-
-    @Override
-    public double checkRainyCost() {
-        return 1.2;
-    }
-
-    @Override
-    public double checkSnowyCost() {
-        return 1.3;
-    }
-
-    protected abstract Y createResponseDto();
-
 }

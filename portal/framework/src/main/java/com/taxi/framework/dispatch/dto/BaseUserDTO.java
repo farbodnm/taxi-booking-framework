@@ -1,5 +1,6 @@
 package com.taxi.framework.dispatch.dto;
 
+import com.taxi.framework.booking.dto.BaseBookingRequestDTO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -7,10 +8,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class BaseUserDTO {
-    private long userId;
-    private float longitude;
-    private float latitude;
-    private float destLongitude;
-    private float destLatitude;
+public class BaseUserDTO extends BaseBookingRequestDTO {
+
 }
