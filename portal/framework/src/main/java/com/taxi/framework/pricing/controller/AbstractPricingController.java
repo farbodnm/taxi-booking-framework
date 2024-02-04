@@ -20,7 +20,7 @@ public abstract class AbstractPricingController<T extends BasePricingDTO, Y exte
         this.pricingService = pricingService;
     }
 
-    @PostMapping(value = "/calculate", consumes = MediaType.APPLICATION_ATOM_XML_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/calculate", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Y> calculatePricing(@RequestBody T dto) {
         return ResponseEntity.ok(pricingService.getResponse(dto));
     }
