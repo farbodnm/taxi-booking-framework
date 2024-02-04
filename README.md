@@ -59,17 +59,25 @@ The framework is designed using a service oriented architecture with each servic
 
 ### Framework Services:
 
-#### [Booking Service](portal/framework/src/main/java/com/taxi/framework/booking/README.md)
+#### [Booking Service](portal/framework/src/main/java/com/taxi/framework/booking)
 
 > Handles bookings made by users, manages assignments, states of the user, and assigned driver's location.
 
-#### [Dispatching Service](portal/framework/src/main/java/com/taxi/framework/dispatch/README.md)
+#### [Dispatching Service](portal/framework/src/main/java/com/taxi/framework/dispatch)
 
 > Handles finding users based on proximity to the driver, using the locations from fleet management.
 
-#### [Fleet Management Service](portal/framework/src/main/java/com/taxi/framework/fleet/README.md)
+#### [Fleet Management Service](portal/framework/src/main/java/com/taxi/framework/fleet)
 
 > Handles drivers registered and looking for users, keeps an updated location of each driver.
+
+#### [Pricing Service](portal/framework/src/main/java/com/taxi/framework/pricing)
+
+> Handles pricing calculation for a user based on different variables like traffic, rain, and distance.
+
+#### [User Service](portal/framework/src/main/java/com/taxi/framework/user)
+
+> Pre-made endpoints, DTOs, and service interface for user management.
 
 ## Component, and Class Diagram
 To view the enforced architecture diagram please click the link below (The classes provided by the framework are colored blue, while the classes that are supposed to be made by the developer are coloured purple).
